@@ -1,5 +1,7 @@
-lista = ["celular", "900.00, 5", "tablet", "800.00, 5"]
-
+lista = ["Item: Celular"" ", "Valor: R$900,00 "   , "Quantidade: 5 "   , "Item: Tablet"" " , "Valor: R$800,00 "  , "Quantidade: 5", "Item: Computador"" ", "Valor: R$1500,00 " , "Quantidade: 10 "]
+print("Seja bem-vindo")
+usuario = input("Digite seu usuario para continuar: ")
+print(f"Olá {usuario} esse é sue menu de opções")
 while True:
     print("===== MENU DE OPÇÕES =====")
     print("1. Adicionar produtos")
@@ -10,35 +12,46 @@ while True:
     escolha = input("Escolha uma opção: ")
     
     if escolha == "1":
-        item = str(input("Digite item desejado: "))
-        valor = float(input("Digite o valor desejado: "))
-        quantidade = int(input("Digite a quantidade desejada: "))
-        valor_quantidade = [valor , quantidade]
-        lista.append(item)
-        lista.append(valor_quantidade)
-        # Faça algo relacionado à opção 1
+        item = str(input("Digite o nome do item: "))
+        valor = str(input("Digite o valor: "))
+        quantidade = str(input("Digite a quantidade em estoque: "))
+        lista.append("Item: " + item + " ")
+        lista.append("valor: R$" + valor + " ")
+        lista.append("Quantidade: " + quantidade + " ")
+        
         
     elif escolha == "2":
-        item_atualizar = input("item desejado")
-        
-        indice = lista.index(item_atualizar)
+        item_atualizar = str(input("Digite o nome do item: "))
+        novo_valor = str(input("Digite o valor: "))
+        novo_quantidade = str(input("Digite a quantidade em estoque: "))
+        indice = lista.index ("Item: " + item_atualizar + " ")
         novo_indice = indice + 1
-        novo_valor = input("digite o valor desejado")
+        novo_indice_quantidade = novo_indice
+        
         valor_deletar = novo_indice
+        quantidade_deletar = novo_indice_quantidade
         for i in range(len(lista)):
             if lista[novo_indice] == item_atualizar:
                 lista[novo_indice] = novo_valor
                 break
-        
         del lista[valor_deletar]
+        for i in range(len(lista)):
+            if lista[novo_indice_quantidade] == item_atualizar:
+                lista[novo_indice_quantidade] = novo_quantidade
+                break
+
+        del lista[quantidade_deletar]
+        lista.insert(novo_indice_quantidade," " + "Quantidade: " + novo_quantidade)
+        lista.insert(novo_indice," " +  "Valor: R$" + novo_valor)
         
         
         
-        
-        lista.insert(novo_indice, novo_valor)
         
     elif escolha == "3":
-        print(lista)
+        for i, elemento in enumerate(lista, start=1):
+            print(elemento, end="")
+            if i % 3 == 0:
+                print()
         
         
     elif escolha == "0":
